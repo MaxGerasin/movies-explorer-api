@@ -49,13 +49,12 @@ const patchUser = (req, res, next) => {
   const { name, email } = req.body;
 
   User.findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true })
-    .orFail()
     .then((user) => res.send(user))
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
         next(new IncorrectError(errorMessages.INCORRECT_DATA));
-      } else if (err instanceof mongoose.Error.DocumentNotFoundError) {
-        next(new NotFoundDataError(errorMessages.NOT_FOUND_DATA));
+      } else if (err.code === 11000) {
+        next(new ConflictError(errorMessages.CONFLICT));
       } else {
         next(err);
       }

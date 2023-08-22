@@ -41,7 +41,7 @@ const postMovieCelebrate = celebrate({
 
 const deleteMovieCelebrate = celebrate({
   params: Joi.object().keys({
-    movieId: Joi.number().required(),
+    _id: Joi.string().required().hex().length(24),
   }),
 });
 
