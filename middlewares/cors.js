@@ -3,8 +3,8 @@ const allowedCors = [
   'http://beatfilms.maxgerasin.nomoredomainsicu.ru',
   'https://api.beatfilms.maxgerasin.nomoredomainsicu.ru',
   'http://api.beatfilms.maxgerasin.nomoredomainsicu.ru',
-  'https://localhost:3001',
-  'http://localhost:3001',
+  'https://localhost:3000',
+  'http://localhost:3000',
 ];
 
 module.exports = (req, res, next) => {
