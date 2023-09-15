@@ -69,10 +69,11 @@ const login = (req, res, next) => {
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : DEV_JWT_SECRET, {
         expiresIn: '7d',
       });
-      res.cookie('jwt', token, {
+      res.setCookie('jwt', token, {
         maxAge: 60 * 60 * 1000,
         httpOnly: true,
         sameSite: true,
+        domain: 'beatfilms.maxgerasin.nomoredomainsicu.ru',
       });
       res.send({ message: 'Авторизация прошла успешно' });
     })
