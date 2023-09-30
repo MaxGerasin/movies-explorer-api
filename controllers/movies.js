@@ -51,14 +51,15 @@ const postMovie = (req, res, next) => {
 };
 
 const deleteMovie = (req, res, next) => {
-  Movie.findOne({ movieId: req.params.movieId, owner: req.user._id })
+  Movie.findById( req.params.movieId)
     .then((movie) => {
       if (movie) {
         const owner = movie.owner.toString();
         if (owner !== req.user._id) {
           throw new ForbiddenError(errorMessages.FORBIDDEN);
         } else {
-          return Movie.findOneAndRemove({ movieId: req.params.movieId });
+          movie.deleteOne();
+          return res.send(movie);
         }
       } else {
         throw new NotFoundDataError(errorMessages.NOT_FOUND_DATA);
