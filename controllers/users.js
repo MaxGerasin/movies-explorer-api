@@ -73,7 +73,6 @@ const login = (req, res, next) => {
         maxAge: 60 * 60 * 1000,
         httpOnly: true,
         sameSite: true,
-        domain: 'beatfilms.maxgerasin.nomoredomainsicu.ru',
       });
       res.send({ message: 'Авторизация прошла успешно' });
     })
